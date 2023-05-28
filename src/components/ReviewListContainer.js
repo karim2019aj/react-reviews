@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import Review from './Review';
 
 const ReviewListContainer = ({ data }) => {
-  const itemsPerPage = 5;
+  const filtredDataLen = data.length;
+  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const currentReviews = data.slice(firstIndex, lastIndex);
-  const totalPages = 10 ;//Math.ceil(data.length / itemsPerPage);
+  const totalPages = 10 ;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   return (
-    <div className='w-full'>
-      <h3>Reviews</h3>
+    <div className='w-full brder border-l-2 pl-4 pt-4'>
+      <h3>Viewing 1-{itemsPerPage} of {filtredDataLen}</h3>
       {currentReviews.map((review, index) => (
         <div key={index}>
           <Review key={review.id} reviewData={review} />
@@ -26,7 +27,7 @@ const ReviewListContainer = ({ data }) => {
         <ul className="inline-flex items-center -space-x-px">
           <li>
             <a
-              className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="cursor-pointer block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               onClick={() => handlePageChange(currentPage - 1)}
             >
               <span className="sr-only">Previous</span>
@@ -48,7 +49,7 @@ const ReviewListContainer = ({ data }) => {
           {Array.from({ length: totalPages }, (_, index) => (
             <li key={index}>
               <a
-                className={`px-3 py-2 leading-tight ${
+                className={`cursor-pointer px-3 py-2 leading-tight ${
                   index + 1 === currentPage
                     ? 'text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
                     : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
@@ -61,7 +62,7 @@ const ReviewListContainer = ({ data }) => {
           ))}
           <li>
             <a
-              className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="cursor-pointer block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               onClick={() => handlePageChange(currentPage + 1)}
             >
               <span className="sr-only">Next</span>

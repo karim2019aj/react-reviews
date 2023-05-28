@@ -1,14 +1,13 @@
 import React from 'react';
-
 const Review = ({ reviewData }) => {
   const { appStoreName, reviewDate, rating, version, countryName, reviewHeading, reviewText, reviewUserName } = reviewData;
 
   return (
-    <div className="bg-gray-100 p-6 m-3 w-full" >
-      <div className='inline-flex gap-4 '>
-        <span className="bg-gray-200 px-4 mb-2 text-center font-medium ">{appStoreName}</span>
-        <p className="mb-1"><strong>{reviewHeading}</strong></p>
-        <div className="mb-1 flex flex-inline">
+    <div className="border border-gray-200 shadow-lg rounded  p-6 m-3 w-full" >
+      <div className='inline-flex gap-4 items-center '>
+        <span className="bg-gray-200 px-4 rounded text-center font-medium text-slate-800">{appStoreName}</span>
+        <p className="font-semibold">{reviewHeading}</p>
+        <div className=" flex flex-inline">
           {Array.from({ length: rating }).map((_, index) => (
             <svg
               key={index}
@@ -24,13 +23,28 @@ const Review = ({ reviewData }) => {
 
         </div>
       </div>
-      <p className="mb-1 font-normal py-8 ">{reviewText}</p>
-      <div className='flex flex-inline gap-8 font-medium'>
-        <p className="mb-1">By {reviewUserName}</p>
-        <p className="mb-1">In {reviewDate}</p>
-        <p className="mb-1"> {version}</p>
-        <p className="mb-1"> {countryName}</p>
+      <p className="font-normal py-8 text-slate-700 ">{reviewText}</p>
+      <div className="flex items-center justify-between gap-4 font-medium text-slate-800">
+        <div className='flex flex-inline gap-4'>
+          <p>By {reviewUserName}</p>
+          <p>In {reviewDate}</p>
+          <p>{version}</p>
+          <p>{countryName}</p>
+        </div>
+        <div className="flex gap-4">
+          <a href='#'>reply</a>
+          <a href='#' className='flex flex-inline' >
+            <p>share</p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </a>
+
+
+        </div>
       </div>
+
+
 
     </div>
   );
