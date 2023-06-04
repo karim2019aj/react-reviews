@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SelectDropdown from './components/SelectDropdown';
 import ReviewListContainer from './components/ReviewListContainer';
-import './App.css';
+import KeywordSearching from './components/KeywordSearching';
 import dummyData from './review.json';
 
 function App() {
@@ -27,6 +27,11 @@ function App() {
   const handleSortingChange = (e) => {
     setSortingOption(e.target.value);
     sortFilteredData(e.target.value);
+  };
+
+  const filterData = (filteredReviews) =>{
+    setFilteredData(filteredReviews);
+    //console.log(filteredReviews);
   };
 
   const sortFilteredData = (option) => {
@@ -66,11 +71,11 @@ function App() {
             </select>
           </div>
         </div>
-
-
-        <div className="flex ">
-          <div className="w-1/5 pt-4">filtering part</div>
-          <ReviewListContainer data={filteredData} />
+        <div className="flex ">         
+          <div className="w-1/5 pt-4">
+            <KeywordSearching data={data} filtredData={filteredData} onFilter={filterData} />
+          </div>
+          <ReviewListContainer data={filteredData}  />
         </div>
       </div>
     </div>

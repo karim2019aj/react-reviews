@@ -12,7 +12,7 @@ const Review = ({ reviewData }) => {
             <svg
               key={index}
               aria-hidden="true"
-              className="w-7 h-7 text-yellow-500"
+              className="w-7 h-7 text-teal-500"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
